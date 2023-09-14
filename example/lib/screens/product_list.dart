@@ -6,6 +6,7 @@ import 'package:shopping_cart_app/provider/cart_provider.dart';
 import 'package:shopping_cart_app/database/db_helper.dart';
 import 'package:shopping_cart_app/model/cart_model.dart';
 import 'package:shopping_cart_app/screens/cart_screen.dart';
+import 'package:badges/badges.dart' as badges;
 
 class ProductList extends StatefulWidget {
   const ProductList({Key? key}) : super(key: key);
@@ -80,9 +81,7 @@ class _ProductListState extends State<ProductList> {
           .then((value) {
         cart.addTotalPrice(products[index].price.toDouble());
         cart.addCounter();
-        print('Product Added to cart');
       }).onError((error, stackTrace) {
-        print(error.toString());
       });
     }
 
@@ -91,7 +90,7 @@ class _ProductListState extends State<ProductList> {
         centerTitle: true,
         title: const Text('Product List'),
         actions: [
-          Badge(
+          badges.Badge(
             badgeContent: Consumer<CartProvider>(
               builder: (context, value, child) {
                 return Text(
@@ -101,7 +100,7 @@ class _ProductListState extends State<ProductList> {
                 );
               },
             ),
-            position: const BadgePosition(start: 30, bottom: 30),
+            position: badges.BadgePosition.topEnd(),
             child: IconButton(
               onPressed: () {
                 Navigator.push(

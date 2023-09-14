@@ -8,16 +8,9 @@ import 'constants/common.dart';
 class ChapaWebView extends StatefulWidget {
   final String url;
   final String fallBackNamedUrl;
-  final String transactionReference;
-  final String amountPaid;
-
-  //ttx
-  //amount
-  //description
-  //
 
   const ChapaWebView(
-      {Key? key, required this.url, required this.fallBackNamedUrl, required this.transactionReference, required this.amountPaid})
+      {Key? key, required this.url, required this.fallBackNamedUrl})
       : super(key: key);
 
   @override
@@ -74,7 +67,7 @@ class _ChapaWebViewState extends State<ChapaWebView> {
     Navigator.pushNamed(
       context,
       widget.fallBackNamedUrl,
-      arguments: {'message': message, 'transactionReference':widget.transactionReference,'paidAmount':widget.amountPaid},
+      arguments: {'message': message},
     );
   }
 
@@ -97,12 +90,12 @@ class _ChapaWebViewState extends State<ChapaWebView> {
                   webViewController = controller;
                 });
                 controller.addJavaScriptHandler(
-                    handlerName: "buttonState",
+                    handlerName: ChapaStrings.buttonHandler,
                     callback: (args) async {
                       webViewController = controller;
 
-                      if (args[2][1] == 'CancelbuttonClicked') {
-                        exitPaymentPage('paymentCancelled');
+                      if (args[2][1] == ChapaStrings.cancelClicked) {
+                        exitPaymentPage(ChapaStrings.paymentCancelled);
                       }
 
                       return args.reduce((curr, next) => curr + next);
@@ -111,34 +104,34 @@ class _ChapaWebViewState extends State<ChapaWebView> {
               onUpdateVisitedHistory: (InAppWebViewController controller,
                   Uri? uri, androidIsReload) async {
                 if (uri.toString() == 'https://chapa.co') {
-                  exitPaymentPage('paymentSuccessful');
+                  exitPaymentPage(ChapaStrings.paymentSuccessful);
                 }
                 if (uri.toString().contains('checkout/payment-receipt/')) {
-                    await delay();
-                    exitPaymentPage('paymentSuccessful');
-                  }
+                  await delay();
+                  exitPaymentPage(ChapaStrings.paymentSuccessful);
+                }
                 controller.addJavaScriptHandler(
-                    handlerName: "handlerFooWithArgs",
+                    handlerName: ChapaStrings.handlerArgs,
                     callback: (args) async {
                       webViewController = controller;
-                      if (args[2][1] == 'failed') {
+                      if (args[2][1] == ChapaStrings.failed) {
                         await delay();
-                        exitPaymentPage('paymentFailed');
+                        exitPaymentPage(ChapaStrings.payementFailed);
                       }
-                      if (args[2][1] == 'success') {
+                      if (args[2][1] == ChapaStrings.success) {
                         await delay();
-                        exitPaymentPage('paymentSuccessful');
+                        exitPaymentPage(ChapaStrings.paymentSuccessful);
                       }
                       return args.reduce((curr, next) => curr + next);
                     });
 
                 controller.addJavaScriptHandler(
-                    handlerName: "buttonState",
+                    handlerName: ChapaStrings.buttonHandler,
                     callback: (args) async {
                       webViewController = controller;
 
-                      if (args[2][1] == 'CancelbuttonClicked') {
-                        exitPaymentPage('paymentCancelled');
+                      if (args[2][1] == ChapaStrings.cancelClicked) {
+                        exitPaymentPage(ChapaStrings.paymentCancelled);
                       }
 
                       return args.reduce((curr, next) => curr + next);

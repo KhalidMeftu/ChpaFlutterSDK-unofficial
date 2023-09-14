@@ -7,4 +7,12 @@ class ChapaStrings {
   static const lastNameRequired = 'First Name is required';
   static const transactionRefrenceRequired = 'Transaction is required';
   static const connectionError='Connectivity Issue';
+  static const buttonHandler ='buttonState';
+  static const cancelClicked ='CancelbuttonClicked';
+  static const paymentCancelled='paymentCancelled';
+  static const paymentSuccessful='paymentSuccessful';
+  static const handlerArgs='handlerFooWithArgs';
+  static const failed='failed';
+  static const payementFailed='paymentFailed';
+  static const success='Success';
 }

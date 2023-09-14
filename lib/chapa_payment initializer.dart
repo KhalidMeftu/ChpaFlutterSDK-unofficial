@@ -1,6 +1,6 @@
+import 'package:chapasdk/service/web_service.dart';
 import 'package:flutter/material.dart';
 import 'constants/common.dart';
-import 'constants/requests.dart';
 import 'constants/strings.dart';
 
 class Chapa {
@@ -29,16 +29,16 @@ class Chapa {
     required this.desc,
     required this.namedRouteFallBack,
   }) {
-    _validateKeys();
+    validateKeys();
     currency = currency.toUpperCase();
-    if(_validateKeys())
+    if(validateKeys())
       {
-        initatePayment();
+        initPayment();
       }
 
   }
 
-  bool _validateKeys() {
+  bool validateKeys() {
     if (publicKey.trim().isEmpty) {
       showErrorToast(ChapaStrings.publicKeyRequired);
       return false;
@@ -72,8 +72,8 @@ class Chapa {
     return true;
   }
 
-  void initatePayment() async{
-       intilizeMyPayment(context, publicKey, email, amount, currency, firstName,
+  void initPayment() async{
+         intilizeMyPayment(context, publicKey, email, amount, currency, firstName,
         lastName, txRef, title, desc, namedRouteFallBack);
   }
 }

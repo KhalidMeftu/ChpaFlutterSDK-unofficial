@@ -1,13 +1,13 @@
 import 'dart:convert';
+import 'package:chapasdk/chapawebview.dart';
 import 'package:chapasdk/constants/url.dart';
+import 'package:chapasdk/constants/utils.dart';
+import 'package:chapasdk/model/data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
-import '../chapawebview.dart';
-import '../model/data.dart';
-
-Future<String> intilizeMyPayment(
+import 'dart:async';
+Future<Object> intilizeMyPayment(
   BuildContext context,
   String authorization,
   String email,
@@ -37,6 +37,7 @@ Future<String> intilizeMyPayment(
     },
   );
   var jsonResponse = json.decode(response.body);
+
   if (response.statusCode == 400) {
     showToast(jsonResponse);
   } else if (response.statusCode == 200) {
@@ -48,24 +49,12 @@ Future<String> intilizeMyPayment(
           builder: (context) => ChapaWebView(
                 url: res.data.checkoutUrl.toString(),
                 fallBackNamedUrl: fallBackNamedRoute,
-                transactionReference: transactionReference,
-                amountPaid: amount,
               )),
     );
 
     return res.data.checkoutUrl.toString();
   }
 
-  return '';
+  return showToast(jsonResponse['message'].toString());
 }
 
-Future<bool?> showToast(jsonResponse) {
-  return Fluttertoast.showToast(
-      msg: jsonResponse['message'],
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.CENTER,
-      timeInSecForIosWeb: 1,
-      backgroundColor: Colors.red,
-      textColor: Colors.white,
-      fontSize: 16.0);
-}

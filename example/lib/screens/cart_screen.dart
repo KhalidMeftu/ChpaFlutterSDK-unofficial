@@ -1,4 +1,4 @@
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopping_cart_app/database/db_helper.dart';
@@ -21,8 +21,6 @@ class _CartScreenState extends State<CartScreen> {
 
   @override
   void initState() {
-
-    // get data after payment charm update your database now
     Future.delayed(Duration.zero,(){
       setState(() {
         if(ModalRoute.of(context)?.settings.arguments!= null)
@@ -30,8 +28,6 @@ class _CartScreenState extends State<CartScreen> {
             args=ModalRoute.of(context)?.settings.arguments;
             print('message after payment');
             print(args['message']);
-            print(args['transactionReference']);
-            print(args['paidAmount']);
 
           }
       });
@@ -50,8 +46,8 @@ class _CartScreenState extends State<CartScreen> {
         centerTitle: true,
         title: const Text('My Shopping Cart'),
         actions: [
-          Badge(
-            badgeContent: Consumer<CartProvider>(
+      badges.Badge(
+           badgeContent: Consumer<CartProvider>(
               builder: (context, value, child) {
                 return Text(
                   value.getCounter().toString(),
@@ -60,7 +56,7 @@ class _CartScreenState extends State<CartScreen> {
                 );
               },
             ),
-            position: const BadgePosition(start: 30, bottom: 30),
+        position: badges.BadgePosition.topEnd(),
             child: IconButton(
               onPressed: () {},
               icon: const Icon(Icons.shopping_cart),
@@ -263,7 +259,7 @@ class _CartScreenState extends State<CartScreen> {
             email: 'xyz@gmail.com',
             firstName: 'testname',
             lastName: 'lastName',
-            txRef: '55ttyyy',
+            txRef: '55ttyfsdfasdgfgfyyayy',
             title: 'title',
             desc:'desc',
             namedRouteFallBack: '/checkoutPage', // fall back route name
