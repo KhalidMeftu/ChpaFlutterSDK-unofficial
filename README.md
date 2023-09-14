@@ -73,4 +73,16 @@ Chapa.paymentParameters(
 
 Answer Yes, the fallBackRoute comes with an information such as payment is successfull, user cancelled payment and connectivity issue messages. Those informations will help you to update your backend, to generate new transaction refrence.
 
+#### what is invalid key mean?
 
+Answer If you get an invalid key error try to generate new key or use test secrate key while testing.
+
+
+
+## Demo
+
+screen shots
+
+https://ethiomappsgebeta.com/image_one.jpg
+https://ethiomappsgebeta.com/image_two.jpg
+https://ethiomappsgebeta.com/image_three.jpg
