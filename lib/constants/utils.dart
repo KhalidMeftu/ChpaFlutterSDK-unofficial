@@ -2,7 +2,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
 Future<bool?> showToast(jsonResponse) {
   return Fluttertoast.showToast(
-      msg: jsonResponse['message'],
+      msg: jsonResponse,
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.CENTER,
       timeInSecForIosWeb: 1,

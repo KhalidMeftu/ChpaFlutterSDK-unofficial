@@ -103,6 +103,8 @@ class _ChapaWebViewState extends State<ChapaWebView> {
               },
               onUpdateVisitedHistory: (InAppWebViewController controller,
                   Uri? uri, androidIsReload) async {
+                print("Next URL IS");
+                print(uri.toString());
                 if (uri.toString() == 'https://chapa.co') {
                   exitPaymentPage(ChapaStrings.paymentSuccessful);
                 }
@@ -110,10 +112,17 @@ class _ChapaWebViewState extends State<ChapaWebView> {
                   await delay();
                   exitPaymentPage(ChapaStrings.paymentSuccessful);
                 }
+                if(uri.toString().contains('checkout/test-payment-receipt/')){
+                  await delay();
+                  exitPaymentPage(ChapaStrings.paymentSuccessful);
+
+                }
                 controller.addJavaScriptHandler(
                     handlerName: ChapaStrings.handlerArgs,
                     callback: (args) async {
                       webViewController = controller;
+                      print("Next URL IS2");
+                      print(args[2][1]);
                       if (args[2][1] == ChapaStrings.failed) {
                         await delay();
                         exitPaymentPage(ChapaStrings.payementFailed);
@@ -129,7 +138,8 @@ class _ChapaWebViewState extends State<ChapaWebView> {
                     handlerName: ChapaStrings.buttonHandler,
                     callback: (args) async {
                       webViewController = controller;
-
+                      print("Next URL IS3");
+                      print(args[2][1]);
                       if (args[2][1] == ChapaStrings.cancelClicked) {
                         exitPaymentPage(ChapaStrings.paymentCancelled);
                       }

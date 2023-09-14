@@ -25,6 +25,7 @@ Future<Object> intilizeMyPayment(
     headers: {
       'Authorization': 'Bearer $authorization',
     },
+
     body: {
       'email': email,
       'amount': amount,
@@ -36,10 +37,12 @@ Future<Object> intilizeMyPayment(
       'customization[description]': customDescription
     },
   );
+  print("Authorization is");
+  print(authorization);
   var jsonResponse = json.decode(response.body);
 
   if (response.statusCode == 400) {
-    showToast(jsonResponse);
+    showToast(jsonResponse['message']);
   } else if (response.statusCode == 200) {
     ResponseData res = ResponseData.fromJson(jsonResponse);
 
@@ -55,6 +58,6 @@ Future<Object> intilizeMyPayment(
     return res.data.checkoutUrl.toString();
   }
 
-  return showToast(jsonResponse['message'].toString());
+  return showToast(jsonResponse.toString());
 }
 

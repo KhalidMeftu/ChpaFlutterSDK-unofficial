@@ -259,7 +259,7 @@ class _CartScreenState extends State<CartScreen> {
             email: 'xyz@gmail.com',
             firstName: 'testname',
             lastName: 'lastName',
-            txRef: '55ttyfsdfasdgfgfyyayy',
+            txRef: '55treetrreteqwsdfdfg',
             title: 'title',
             desc:'desc',
             namedRouteFallBack: '/checkoutPage', // fall back route name
