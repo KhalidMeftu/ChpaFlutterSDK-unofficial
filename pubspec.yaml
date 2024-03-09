@@ -5,8 +5,7 @@ homepage: https://github.com/chapa-et/chapa-flutter
 
 environment:
   sdk: ">=3.0.2<4.0.0"
-  flutter: ">=3.16.9"
-
+  flutter: ">=1.17.0"
 dependencies:
   flutter:
     sdk: flutter
