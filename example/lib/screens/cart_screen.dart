@@ -253,13 +253,13 @@ class _CartScreenState extends State<CartScreen> {
         ///
          Chapa.paymentParameters(
             context: context, // context
-            publicKey: 'CHASECK_TEST-',
+            publicKey: 'CHASECK_TEST-7LNY26k8aIcWkgsoHoPgZhNjiYhnOMQ9',
             currency: 'etb',
             amount: '300',
             email: 'xyz@gmail.com',
             firstName: 'testname',
             lastName: 'lastName',
-            txRef: '55treetrreteqwsdfdfg',
+            companyName: 'gffgft6677557',
             title: 'title',
             desc:'desc',
             namedRouteFallBack: '/checkoutPage', // fall back route name

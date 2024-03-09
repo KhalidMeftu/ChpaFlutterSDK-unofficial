@@ -84,7 +84,7 @@ class _ChapaWebViewState extends State<ChapaWebView> {
         body: Column(children: <Widget>[
           Expanded(
             child: InAppWebView(
-              initialUrlRequest: URLRequest(url: Uri.parse(widget.url)),
+              initialUrlRequest: URLRequest(url:WebUri(widget.url)),
               onWebViewCreated: (controller) {
                 setState(() {
                   webViewController = controller;
@@ -103,8 +103,7 @@ class _ChapaWebViewState extends State<ChapaWebView> {
               },
               onUpdateVisitedHistory: (InAppWebViewController controller,
                   Uri? uri, androidIsReload) async {
-                print("Next URL IS");
-                print(uri.toString());
+
                 if (uri.toString() == 'https://chapa.co') {
                   exitPaymentPage(ChapaStrings.paymentSuccessful);
                 }
@@ -121,8 +120,7 @@ class _ChapaWebViewState extends State<ChapaWebView> {
                     handlerName: ChapaStrings.handlerArgs,
                     callback: (args) async {
                       webViewController = controller;
-                      print("Next URL IS2");
-                      print(args[2][1]);
+
                       if (args[2][1] == ChapaStrings.failed) {
                         await delay();
                         exitPaymentPage(ChapaStrings.payementFailed);
@@ -138,8 +136,7 @@ class _ChapaWebViewState extends State<ChapaWebView> {
                     handlerName: ChapaStrings.buttonHandler,
                     callback: (args) async {
                       webViewController = controller;
-                      print("Next URL IS3");
-                      print(args[2][1]);
+
                       if (args[2][1] == ChapaStrings.cancelClicked) {
                         exitPaymentPage(ChapaStrings.paymentCancelled);
                       }

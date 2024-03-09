@@ -15,7 +15,7 @@ Future<Object> intilizeMyPayment(
   String currency,
   String firstName,
   String lastName,
-  String transactionReference,
+  String companyName,
   String customTitle,
   String customDescription,
   String fallBackNamedRoute,
@@ -32,15 +32,13 @@ Future<Object> intilizeMyPayment(
       'currency': currency.toUpperCase(),
       'first_name': firstName,
       'last_name': lastName,
-      'tx_ref': transactionReference,
+      'tx_ref': generateTransactionReference(companyName),
       'customization[title]': customTitle,
       'customization[description]': customDescription
     },
   );
-  print("Authorization is");
-  print(authorization);
-  var jsonResponse = json.decode(response.body);
 
+  var jsonResponse = json.decode(response.body);
   if (response.statusCode == 400) {
     showToast(jsonResponse['message']);
   } else if (response.statusCode == 200) {

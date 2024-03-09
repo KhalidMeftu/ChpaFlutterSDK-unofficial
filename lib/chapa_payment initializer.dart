@@ -11,7 +11,7 @@ class Chapa {
   String email;
   String firstName;
   String lastName;
-  String txRef;
+  String companyName;
   String title;
   String desc;
   String namedRouteFallBack;
@@ -24,7 +24,7 @@ class Chapa {
     required this.email,
     required this.firstName,
     required this.lastName,
-    required this.txRef,
+    required this.companyName,
     required this.title,
     required this.desc,
     required this.namedRouteFallBack,
@@ -64,7 +64,7 @@ class Chapa {
      showErrorToast(ChapaStrings.lastNameRequired);
      return false;
     }
-    if (txRef.trim().isEmpty) {
+    if (companyName.trim().isEmpty) {
      showErrorToast(ChapaStrings.transactionRefrenceRequired);
      return false;
     }
@@ -74,6 +74,6 @@ class Chapa {
 
   void initPayment() async{
          intilizeMyPayment(context, publicKey, email, amount, currency, firstName,
-        lastName, txRef, title, desc, namedRouteFallBack);
+        lastName, companyName, title, desc, namedRouteFallBack);
   }
 }
