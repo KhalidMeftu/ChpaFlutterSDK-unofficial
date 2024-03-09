@@ -28,6 +28,7 @@ class _CartScreenState extends State<CartScreen> {
             args=ModalRoute.of(context)?.settings.arguments;
             print('message after payment');
             print(args['message']);
+            print(args['ttx']);
 
           }
       });
@@ -259,7 +260,7 @@ class _CartScreenState extends State<CartScreen> {
             email: 'xyz@gmail.com',
             firstName: 'testname',
             lastName: 'lastName',
-            companyName: 'gffgft6677557',
+            companyName: 'LeyuCars',
             title: 'title',
             desc:'desc',
             namedRouteFallBack: '/checkoutPage', // fall back route name

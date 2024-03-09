@@ -20,6 +20,8 @@ Future<Object> intilizeMyPayment(
   String customDescription,
   String fallBackNamedRoute,
 ) async {
+  String generatedTransactionRef=generateTransactionReference(companyName);
+
   final http.Response response = await http.post(
     Uri.parse(ChapaUrl.baseUrl),
     headers: {
@@ -32,7 +34,7 @@ Future<Object> intilizeMyPayment(
       'currency': currency.toUpperCase(),
       'first_name': firstName,
       'last_name': lastName,
-      'tx_ref': generateTransactionReference(companyName),
+      'tx_ref':generatedTransactionRef,
       'customization[title]': customTitle,
       'customization[description]': customDescription
     },
@@ -43,13 +45,13 @@ Future<Object> intilizeMyPayment(
     showToast(jsonResponse['message']);
   } else if (response.statusCode == 200) {
     ResponseData res = ResponseData.fromJson(jsonResponse);
-
     Navigator.push(
       context,
       MaterialPageRoute(
           builder: (context) => ChapaWebView(
                 url: res.data.checkoutUrl.toString(),
                 fallBackNamedUrl: fallBackNamedRoute,
+                ttx: generatedTransactionRef,
               )),
     );
 

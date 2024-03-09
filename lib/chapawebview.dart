@@ -8,9 +8,10 @@ import 'constants/common.dart';
 class ChapaWebView extends StatefulWidget {
   final String url;
   final String fallBackNamedUrl;
+  final String ttx;
 
   const ChapaWebView(
-      {Key? key, required this.url, required this.fallBackNamedUrl})
+      {Key? key, required this.url, required this.fallBackNamedUrl, required this.ttx})
       : super(key: key);
 
   @override
@@ -41,7 +42,7 @@ class _ChapaWebViewState extends State<ChapaWebView> {
         });
         showErrorToast(ChapaStrings.connectionError);
 
-        exitPaymentPage(ChapaStrings.connectionError);
+        exitPaymentPage(ChapaStrings.connectionError, widget.ttx);
       } else if (result == ConnectivityResult.mobile) {
         setState(() {
           isOffline = false;
@@ -58,16 +59,16 @@ class _ChapaWebViewState extends State<ChapaWebView> {
         setState(() {
           isOffline = false;
         });
-        exitPaymentPage(ChapaStrings.connectionError);
+        exitPaymentPage(ChapaStrings.connectionError, widget.ttx);
       }
     });
   }
 
-  void exitPaymentPage(String message) {
+  void exitPaymentPage(String message, String ttx) {
     Navigator.pushNamed(
       context,
       widget.fallBackNamedUrl,
-      arguments: {'message': message},
+      arguments: {'message': message,'ttx':ttx},
     );
   }
 
@@ -95,7 +96,7 @@ class _ChapaWebViewState extends State<ChapaWebView> {
                       webViewController = controller;
 
                       if (args[2][1] == ChapaStrings.cancelClicked) {
-                        exitPaymentPage(ChapaStrings.paymentCancelled);
+                        exitPaymentPage(ChapaStrings.paymentCancelled, "");
                       }
 
                       return args.reduce((curr, next) => curr + next);
@@ -105,15 +106,15 @@ class _ChapaWebViewState extends State<ChapaWebView> {
                   Uri? uri, androidIsReload) async {
 
                 if (uri.toString() == 'https://chapa.co') {
-                  exitPaymentPage(ChapaStrings.paymentSuccessful);
+                  exitPaymentPage(ChapaStrings.paymentSuccessful, widget.ttx);
                 }
                 if (uri.toString().contains('checkout/payment-receipt/')) {
                   await delay();
-                  exitPaymentPage(ChapaStrings.paymentSuccessful);
+                  exitPaymentPage(ChapaStrings.paymentSuccessful, widget.ttx);
                 }
                 if(uri.toString().contains('checkout/test-payment-receipt/')){
                   await delay();
-                  exitPaymentPage(ChapaStrings.paymentSuccessful);
+                  exitPaymentPage(ChapaStrings.paymentSuccessful, widget.ttx);
 
                 }
                 controller.addJavaScriptHandler(
@@ -123,11 +124,11 @@ class _ChapaWebViewState extends State<ChapaWebView> {
 
                       if (args[2][1] == ChapaStrings.failed) {
                         await delay();
-                        exitPaymentPage(ChapaStrings.payementFailed);
+                        exitPaymentPage(ChapaStrings.payementFailed,"");
                       }
                       if (args[2][1] == ChapaStrings.success) {
                         await delay();
-                        exitPaymentPage(ChapaStrings.paymentSuccessful);
+                        exitPaymentPage(ChapaStrings.paymentSuccessful, widget.ttx);
                       }
                       return args.reduce((curr, next) => curr + next);
                     });
@@ -138,7 +139,7 @@ class _ChapaWebViewState extends State<ChapaWebView> {
                       webViewController = controller;
 
                       if (args[2][1] == ChapaStrings.cancelClicked) {
-                        exitPaymentPage(ChapaStrings.paymentCancelled);
+                        exitPaymentPage(ChapaStrings.paymentCancelled,"");
                       }
 
                       return args.reduce((curr, next) => curr + next);

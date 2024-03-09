@@ -59,7 +59,7 @@ Chapa.paymentParameters(
         email: 'xyz@gmail.com',
         firstName: 'fullName',
         lastName: 'lastName',
-        txRef: '34TXTHHgb',
+        companyName: 'XYZCrop',
         title: 'title',
         desc:'desc',
         namedRouteFallBack: '/second', // fall back route name
@@ -71,13 +71,15 @@ Chapa.paymentParameters(
 
 #### Should my fallBack route should be named route?
 
-Answer Yes, the fallBackRoute comes with an information such as payment is successfull, user cancelled payment and connectivity issue messages. Those informations will help you to update your backend, to generate new transaction refrence.
+Answer Yes, the fallBackRoute comes with an information such as payment is successfully, user cancelled payment and connectivity issue messages. Those informations will help you to update your backend, to generate new transaction refrence.
 
 #### what is invalid key mean?
 
-Answer If you get an invalid key error try to generate new key or use test secrate key while testing.
+Answer If you get an invalid key error try to generate new key or use test secrete key while testing.
 
+#### why company name is required?
 
+Answer in the old version ttx will be handled by developer and this version supports automatic generation of ttx reference for company name.
 
 ## Demo
 
