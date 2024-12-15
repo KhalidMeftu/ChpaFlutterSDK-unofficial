@@ -12,7 +12,7 @@ dependencies:
 
   http: ^1.2.0
   flutter_inappwebview: ^6.0.0
-  connectivity_plus: any
+  connectivity_plus: ^6.1.1
   fluttertoast: any
   mockito: ^5.4.3
   uuid: any
