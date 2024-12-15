@@ -194,7 +194,7 @@ class _ProductListState extends State<ProductList> {
                     ),
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            primary: Colors.blueGrey.shade900),
+                            backgroundColor: Colors.blueGrey.shade900),
                         onPressed: () {
                           saveData(index);
                         },

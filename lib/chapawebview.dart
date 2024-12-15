@@ -31,7 +31,7 @@ class _ChapaWebViewState extends State<ChapaWebView> {
 
     super.initState();
   }
-
+/*
   void checkConnectivity() {
     connection = Connectivity()
         .onConnectivityChanged
@@ -62,6 +62,49 @@ class _ChapaWebViewState extends State<ChapaWebView> {
         exitPaymentPage(ChapaStrings.connectionError, widget.ttx);
       }
     });
+  }
+  */
+
+  void checkConnectivity() {
+    connection = Connectivity().onConnectivityChanged.listen((dynamic result) {
+      if (result is ConnectivityResult) {
+        handleConnectivityChange(result);
+      } else if (result is List<ConnectivityResult>) {
+        for (var res in result) {
+          handleConnectivityChange(res);
+        }
+      }
+    });
+  }
+
+  void handleConnectivityChange(ConnectivityResult result) {
+    if (result == ConnectivityResult.none) {
+      setState(() {
+        isOffline = true;
+      });
+      showErrorToast(ChapaStrings.connectionError);
+      exitPaymentPage(ChapaStrings.connectionError, widget.ttx);
+    }
+    else if (result == ConnectivityResult.mobile) {
+      setState(() {
+        isOffline = false;
+      });
+    }
+    else if (result == ConnectivityResult.wifi) {
+      setState(() {
+        isOffline = false;
+      });
+    } else if (result == ConnectivityResult.ethernet) {
+      setState(() {
+        isOffline = false;
+      });
+    }
+    else if (result == ConnectivityResult.bluetooth) {
+      setState(() {
+        isOffline = false;
+      });
+      exitPaymentPage(ChapaStrings.connectionError, widget.ttx);
+    }
   }
 
   void exitPaymentPage(String message, String ttx) {

@@ -253,8 +253,8 @@ class _CartScreenState extends State<CartScreen> {
         onTap: () {
         ///
          Chapa.paymentParameters(
-            context: context, // context
-            publicKey: 'CHASECK_TEST-7LNY26k8aIcWkgsoHoPgZhNjiYhnOMQ9',
+            context: context,
+            publicKey: 'CHASECK_TEST-',
             currency: 'etb',
             amount: '300',
             email: 'xyz@gmail.com',
@@ -263,7 +263,7 @@ class _CartScreenState extends State<CartScreen> {
             companyName: 'LeyuCars',
             title: 'title',
             desc:'desc',
-            namedRouteFallBack: '/checkoutPage', // fall back route name
+            namedRouteFallBack: '/checkoutPage',
           );
         },
         child: Container(
@@ -319,11 +319,11 @@ class ReusableWidget extends StatelessWidget {
         children: [
           Text(
             title,
-            style: Theme.of(context).textTheme.subtitle1,
+            style: Theme.of(context).textTheme.titleSmall,
           ),
           Text(
             value.toString(),
-            style: Theme.of(context).textTheme.subtitle2,
+            style: Theme.of(context).textTheme.titleSmall,
           ),
         ],
       ),
