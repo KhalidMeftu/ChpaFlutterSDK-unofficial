@@ -1,9 +1,8 @@
+import 'package:example2/provider/cart_provider.dart';
+import 'package:example2/screens/cart_screen.dart';
+import 'package:example2/screens/product_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopping_cart_app/provider/cart_provider.dart';
-import 'package:shopping_cart_app/screens/cart_screen.dart';
-import 'package:shopping_cart_app/screens/product_list.dart';
-
 void main() {
   runApp(const MyApp());
 }
@@ -22,9 +21,9 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-            routes: {
+          routes: {
             '/checkoutPage':(context)=>const CartScreen()
-            },
+          },
           home: const ProductList(),
         );
       }),

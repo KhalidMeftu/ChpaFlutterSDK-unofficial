@@ -1,12 +1,13 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopping_cart_app/model/item_model.dart';
-import 'package:shopping_cart_app/provider/cart_provider.dart';
-import 'package:shopping_cart_app/database/db_helper.dart';
-import 'package:shopping_cart_app/model/cart_model.dart';
-import 'package:shopping_cart_app/screens/cart_screen.dart';
 import 'package:badges/badges.dart' as badges;
+
+import '../database/db_helper.dart';
+import '../model/cart_model.dart';
+import '../model/item_model.dart';
+import '../provider/cart_provider.dart';
+import 'cart_screen.dart';
 
 class ProductList extends StatefulWidget {
   const ProductList({Key? key}) : super(key: key);

@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shopping_cart_app/database/db_helper.dart';
-import 'package:shopping_cart_app/model/cart_model.dart';
+
+import '../database/db_helper.dart';
+import '../model/cart_model.dart';
 
 class CartProvider with ChangeNotifier {
   DBHelper dbHelper = DBHelper();

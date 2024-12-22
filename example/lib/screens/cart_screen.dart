@@ -1,10 +1,11 @@
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:shopping_cart_app/database/db_helper.dart';
-import 'package:shopping_cart_app/model/cart_model.dart';
-import 'package:shopping_cart_app/provider/cart_provider.dart';
 import 'package:chapasdk/chapasdk.dart';
+import 'package:provider/provider.dart';
+
+import '../database/db_helper.dart';
+import '../model/cart_model.dart';
+import '../provider/cart_provider.dart';
 class CartScreen extends StatefulWidget {
   const CartScreen({
     Key? key,
@@ -254,7 +255,7 @@ class _CartScreenState extends State<CartScreen> {
         ///
          Chapa.paymentParameters(
             context: context,
-            publicKey: 'CHASECK_TEST-',
+            publicKey: '',
             currency: 'etb',
             amount: '300',
             email: 'xyz@gmail.com',
@@ -308,7 +309,7 @@ class PlusMinusButtons extends StatelessWidget {
 
 class ReusableWidget extends StatelessWidget {
   final String title, value;
-  const ReusableWidget({Key? key, required this.title, required this.value});
+  const ReusableWidget({super.key, required this.title, required this.value});
 
   @override
   Widget build(BuildContext context) {
